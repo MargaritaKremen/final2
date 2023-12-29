@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Blog{% endblock %}
+{% block extra_styles %}
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog_list_styles.css' %}">
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-dg0vq8U+Q3l/A49LKe3yD6+S6ZBLBnB++4p0XMR5IAPApG+4WFYIbBGoBIlNZpM9" crossorigin="anonymous"></script>
+
+{% block content %}
+<a href="{% url 'blog:add_post' %}" class="blog-title text-center mt-3">Створити пост</a>
+{% for category, posts in posts_by_category.items %}
+    <h2>{{ category.name }}</h2>
+    <div class="post-container">
+        {% for post in posts %}
+        
+            <div class="post-card">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p>Author: {{ post.author.username }}</p>
+                <p>Created at: {{ post.created_at }}</p>
+
+                {% if post.image.all %}
+                    <div id="carousel-{{ post.id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in post.image.all %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img src="{{ image.image }}" class="d-block img-fluid" alt="Image">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ post.id }}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ post.id }}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                {% endif %}                                
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'authentication/register.html' %}
+{% block namePage %}
+    Авторизація
+{% endblock %}
+
+
+{% block form %}
+    <div class="form-floating mb-4">
+        <input type="text" class="form-control" id="floatingInput" value="{{username}}" name="username" placeholder="Ім'я користувача" required>
+        <label for="floatingInput">Ім'я користувача</label>
+        <div class="invalid-feedback">
+            Заповніть це поле
+        </div>
+    </div>
+    <div class="form-floating mb-4">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Пароль" required>
+        <label for="floatingPassword">Пароль</label>
+        <div class="invalid-feedback">
+            Заповніть це поле
+        </div>
+    </div>
+    <button class="btn btn-outline-primary custom-width">Вхід</button>
+    <a href="register" class="mt-4">В мене немає аккаунту</a>
+{% endblock %}

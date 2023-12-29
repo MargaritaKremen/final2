@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Psy - Блог{% endblock %}
+
+{% block content %}
+    <h1>Like List</h1>
+    <p>Likes: {{ likes_count }}</p>
+    <h2>Users who liked:</h2>
+    {% for user in liked_users %}
+        <p>{{ user.username }}</p>
+    {% endfor %}
+{% endblock %}

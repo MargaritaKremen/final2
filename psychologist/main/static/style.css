@@ -1,0 +1,97 @@
+.logo{
+    width: 180px; height: auto;
+    margin: 0;
+    padding: 0;
+}
+.auth-logo{
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fbfafc;
+    margin-left: 0;
+    font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3{
+    color: #2d3135;
+    font-family: 'Roboto', sans-serif;   
+}
+.color-auyth{
+    color: #6972a6;
+}
+.container {
+    width: 100%;
+    padding: 0 5px;
+}
+
+.navbar {
+    background-color: #efe6d4;
+    transition: all 100ms ease-in-out;
+}
+
+.nav-link {
+    color: #6972a6;   /* колір тексту */
+    font-size: 24px;
+}
+.fa-color{
+    color: #546e9c;
+}
+
+.nav-link:hover,
+.navbar-brand .fa-color:hover,
+.nav-link.active a {
+    color: #db2505;  /* колір тексту активного елементу меню */
+}
+
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    margin: 0 10px; /* отступ между ссылками */
+}
+
+.navbar-nav .navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-floating{
+    width: 100%;
+    max-width: 800px;
+    background-color: #e9edf564;    
+    color: #495057;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.form-control {
+    background-color: #e9edf561; 
+    color: #2d3135; 
+    border-radius: 4px;
+}
+
+.invalid-feedback {
+    color: #d86c77; 
+    background-color: #fbfafc;
+}
+
+.btn-outline-primary {
+    color: #fff;
+    background-color: #6972a6; 
+    border-color: #6972a6;
+}
+
+.btn-outline-primary:hover {
+    color: #2d3135;
+    background-color: #fbfafc;
+    border-color: #6972a6;
+}
+.custom-width {
+    width: 200px; /* Уст.необходимую ширину */
+}

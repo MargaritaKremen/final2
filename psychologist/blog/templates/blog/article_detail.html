@@ -1,0 +1,61 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/blog_styles.css' %}">
+
+<div class="container mt-4 ms-0 ">
+    <div class="row">
+        <div class="col-3 col-md-4 col-sm-12 ms-0">
+            <div class="side-bar">
+                <h3>Темы:</h3>
+                <ul>
+                    {% for category in all_categories %}
+                        <li class="list-of-categories">
+                            <a href="{% url 'blog:category_posts' category_id=category.id %}"><h4>{{ category.name }}</h4></a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-9 col-md-8 col-sm-12">    
+            <div class="article-body ps-1 pe-1">      
+                <h1 class="mb-4">{{ post.title }}</h1>
+                <img src="{% if post.image.all %}{{ post.image.first.image }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top mb-4" alt="Image">
+                <p class="content">{{ post.content }}</p>
+                
+                <p>Автор: {{ post.author.username }}</p>
+            </div>
+
+            <h4>Вподобали: <span id="likes-count"></span></h4>
+            <i id="like-icon" class="fa {% if liked %}fa-solid{% else %}fa-regular{% endif %} fa-heart" data-like-url="{% url 'blog:like_article' article_id=post.id %}"></i>
+            
+         
+            <div class="" id="comments-container">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Додайте свій коментар:" id="comment-content" aria-label="Додайте свій коментар:" aria-describedby="bsubmit-comment">
+                    <button class="btn btn-outline-secondary" type="button" id="submit-comment" data-add-comment-url="{% url 'blog:add_comment' post.id %}">Додати</button>
+                </div>
+                
+                <div class="feedback-title">
+                    {% for comment in post.comments.all %}
+                        {% if comment.author == request.user %}
+                            <p class="form-control text-end">{{ comment.author.username }}: {{ comment.content }}</p>
+                        {% else %}
+                            <p class="form-control">{{ comment.author.username }}: {{ comment.content }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div> 
+        
+            <!-- Передача CSRF-токена и URL для добавления комментария в JavaScript -->
+            <script>
+                const csrfToken = '{{ csrf_token }}';
+                const addCommentUrl = '{% url "blog:add_comment" post.id %}';
+            </script>
+            <script defer src="{% static 'blog/js/comments.js' %}"></script>
+        
+        {% endblock %}

@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #b8bcb753;
+    --button-color: #606a5c8f;
+    --hover-color: #c3c6c695;
+    --secondary-color: #fbfafc;
+    --box-shadow: 0 5px 10px rgba(53, 52, 52, 0.159);
+    --border-color: #1c073843;
+    --text-color: #6972a6;
+    --background-color: #fbfafc;
+    --form-background: #e9edf561;
+    --font-family: 'Roboto', sans-serif;
+    --article-background: #f7f6f361;
+  } 
+
+h3.blog-title, .form-label, .form-control, input-group-text{
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+}
+p.content{
+    font-family: var(--font-family);
+    font-size: 1.5rem;    
+}
+.form-label{
+    margin-bottom: .2rem;
+    margin-left: 0.4rem;
+    font-size: 1rem;
+}
+.form-select{
+    background-color: var(--form-background);    
+    font-size: 1rem;
+}
+.btn-outline-primary {
+    color: var(--secondary-color);
+    background-color: var(--text-color); 
+    border-color: var(--text-color); 
+}
+
+.btn-outline-primary:hover {
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border-color: var(--text-color);
+}
+.form-control:focus, .form-select:focus{
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 0.25rem rgba(84,61,150, 0.25);
+}
+.card-img-top {
+    max-width: 100%;
+    max-height: 200px; 
+    object-fit: cover;
+}
+
+/* Стили для списка категорий */
+.list-of-categories {
+    list-style-type: none; 
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.list-of-categories a {
+    text-decoration: none; 
+    color: #333; 
+    font-size: 16px; 
+}
+
+.list-of-categories a:hover {
+    color: #0066cc; 
+}
+/*article styles*/
+.article-body{
+    background-color: var(--article-background);
+    box-shadow: var(--box-shadow);
+}
+
+.far.fa-heart.text-black {
+    color: #333; 
+}
+
+/* Стиль для сердечка с лайком */
+.far.fa-heart.text-pink {
+    color: #e50ba0; 
+}
+.fa-solid fa-heart{
+    color: #e50ba0; 
+}
+.fa-regular fa-heart{
+    color: #e50ba0; 
+}

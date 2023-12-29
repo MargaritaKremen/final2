@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Psy - Блог{% endblock %}
+
+{% block content %}
+    <h1>Comment List</h1>
+    {% for comment in comments %}
+        <p>{{ comment.author.username }}: {{ comment.text }}</p>
+    {% endfor %}
+{% endblock %}
