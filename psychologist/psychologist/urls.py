@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('authentication/', include('authentication.urls')),
     path('blog/', include('blog.urls')),
-]
+    ]
 
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)

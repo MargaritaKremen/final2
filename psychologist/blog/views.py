@@ -4,7 +4,7 @@ from operator import itemgetter
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseNotFound
-from .models import Like, Post, PostImage, Category
+from .models import Like, Post, PostImage, Category, UserProfile
 # from .forms import PostForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
@@ -15,6 +15,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .models import Post, Comment
 import logging
+from django.contrib import messages # для профілей
 
 logger = logging.getLogger(__name__)
 
@@ -162,3 +163,29 @@ def add_post(request):
     categories = Category.objects.all()
     context = {'categories': categories}
     return render(request, 'blog/add_post.html', context)
+
+def profiles(request):
+    if request.method == 'POST':
+        user = request.user
+        full_name = request.POST.get('full_name')
+        avatar = request.FILES.get('avatar')
+        date_of_birth = request.POST.get('date_of_birth')        
+
+        # чи вже є профіль для користувача:
+        try:
+            profile, created  = UserProfile.objects.get_or_create(user=user)
+            profile.date_of_birth = date_of_birth
+            profile.avatar = avatar
+            profile.full_name = full_name
+            profile.save()
+            messages.success(request, 'Профіль успішно оновлено.')
+            return redirect('profiles')
+        except Exception as e:
+            logger.error(f"Error in profiles view: {e}", exc_info=True)
+            messages.error(request, f'Помилка: {e}')
+
+        return redirect('profiles') 
+    else:
+    # Якщо метод запиту GET, просто відображати сторінку з профілями
+        profiles = UserProfile.objects.all()
+        return render(request, 'profiles.html', {'profiles': profiles})
