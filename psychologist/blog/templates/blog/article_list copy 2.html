@@ -12,7 +12,6 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 <div class="side-bar">
-                    <a href="{% url 'blog:add_post' %}" class="blog-title text-center mt-3">Створити пост</a>
                     <div class="search">
                         <form method="get" action="{% url 'article_list' %}">
                             <input type="text" name="q" placeholder="Пошук...">
@@ -22,7 +21,14 @@
                             <h4>Результати пошуку для '{{ query }}'</h4>
                         {% endif %}
                     </div>
-                    <h3>Теми:</h3>
+
+                    <div class="list-of-categories mb-2 mt-2">
+                        <a href="{% url 'blog:add_post' %}"><h4>Створити пост</h4></a>
+                    </div>
+                    
+                    <div class="list-of-categories">
+                        <a href="{% url 'article_list' %}"><h4>Всі теми:</h4></a>
+                    </div>
                     <ul>
                         {% for cat in all_categories %}
                             <li class="list-of-categories {% if cat.id == category.id %}active{% endif %}">
