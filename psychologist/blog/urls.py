@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import article_list, article_detail, add_to_favorites,  add_post, like_article,category_posts, add_comment, profiles
+from .views import article_list, article_detail, add_to_favorites,  add_post, like_article,category_posts, add_comment
 
 app_name = 'blog'
 
 urlpatterns = [
-    path('profiles/', profiles, name='profiles'),
+    # path('profiles/', profiles, name='profiles'),
     path('article_list/', article_list, name='article_list'),
     path('article/<int:article_id>/', article_detail, name='article_detail'),
     path('category/<int:category_id>/', category_posts, name='category_posts'),

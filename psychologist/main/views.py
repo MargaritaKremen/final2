@@ -21,7 +21,7 @@ def blog(request):
     return render(request, 'main/blog.html')
 
 def profiles(request):
-    return render(request, 'blog/profiles.html')
+    return render(request, 'profiles/profiles.html')
 
 
 

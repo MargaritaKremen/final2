@@ -2,6 +2,7 @@ from django.urls import path
 from .views import main, about, contact, works, blog, profiles
 from authentication.views import auth
 from blog.views import article_list
+from profiles.views import profiles
 
 
 urlpatterns = [

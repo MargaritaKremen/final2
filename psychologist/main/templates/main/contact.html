@@ -1,7 +1,44 @@
 {% extends 'main/base.html' %}
-
-{% block title %}Psy - Контакти{% endblock %}
+{% load static %}
+{% block title %}Контакти{% endblock %}
 
 {% block content %}
-    <h3>Контакти</h3>
+<link rel="stylesheet" type="text/css" href="{% static 'main/style_about.css' %}">
+<div class="container-justify">
+    <div class="contact_page text-center">
+        <h1>Давайте працювати разом!</h1>
+        <h2>
+            <p id="contact">      
+            <a href="mailto:[email]" class="email-link"> ksenija.savchenko@gmail.com </a>
+            </p>
+        </h2>
+        <p id="phone">      
+            <a href="tel:+380675632410" class="email-link">+380 67 563 24 10</a>
+        </p>
+        <h3>
+            <p class="mt-4"> 
+                <div class="d-md-flex justify-content-center footer-footer p-4">
+                    <div class="mb-3">
+                    <span>
+                        <i class="fa-brands fa-square-instagram"></i>
+                        <a href="https://www.instagram.com/margarita_kozlova_off/" class="social-link" target="_blank"><strong>Instagram</strong></a>
+                    </span>
+                    <span>
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        <a href="https://www.linkedin.com/in/margarita-kozlova/" class="social-link" target="_blank"><strong>LinkedIn</strong></a> 
+                    </span>
+                    <span>    
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i> 
+                        <a href="https://www.facebook.com/profile.php?id=100003448968966" class="social-link" target="_blank"><strong>Facebook</strong></a>
+                    </span>    
+                    <span>
+                        <i class="fa-brands fa-twitter" aria-hidden="true"></i> 
+                        <a href="https://www.twitter.com/Margarita3773/" class="social-link" target="_blank"><strong>Twitter</strong></a>
+                    </span>
+                    </div>    
+                </div>        
+            </p> 
+        </h3>  
+    </div> 
+</div>
 {% endblock %}

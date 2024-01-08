@@ -1,7 +1,111 @@
 {% extends 'main/base.html' %}
-
-{% block title %}Psy - Головна{% endblock %}
+{% load static %}
+{% block title %}About Ksenija Savchenko{% endblock %}
 
 {% block content %}
-    <h3>Головна------------------------------------------------------------------------------------------------------------------------------------</h3>
+<link rel="stylesheet" type="text/css" href="{% static 'main/style_about.css' %}">
+<!-- Ваш текст здесь -->
+<div class="container-fluid background_about">
+  <div class="row my-5">
+      <div class="col-md-12 position-relative">
+          <div class="center">
+              <img src="{% static 'main/Ksenija purple.jpg' %}" class="img-fluid shadow rounded" alt="photo" />
+          </div>
+          <div class="overlay-text">
+              <h1 class="text-center custom-h1">Сімейний психолог</h1>
+              <h1 class="text-center custom-h1">Ксенія Савченко</h1>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid background_about">
+    <p>
+        <h1 class="text-center">Про мене:</h1>
+        <div class="row my-5">
+            <div class="col-md-6">
+                <p class="about-me-p">
+                    <h2 class="text-center custom-h2">Привіт! Я психолог, що спеціалізується на сімейних відносинах.</h2>
+                </p><br>
+                <p class="about-me-p">
+                    <h2 class="text-center custom-h2">Я люблю свою справу, якій присвятила вже 15 років. Всі ці роки були насичені допомогою моїм клієнтам. 
+                    Я люблю спостерігати за їх зміцненням та особистим зростанням, це надихає працювати та розвиватися.</h2></p></br>
+                    <p class="about-me-p">
+                    <h2 class="text-center custom-h2">Мені 47 років, я маю сім'ю - чоловіка та сина. Жила та працювала в Києві. Наразі живу в Португалії 
+                    та надаю послуги онлайн.</h2></p>  
+            </div>             
+          <div class="col-md-6">
+            <div class="center">
+                <img src="{% static 'main/photo5.jpg' %}" class="img-fluid shadow rounded" alt="photo" />
+            </div>
+          </div>
+        </div>
+      </p>
+</div>
+   
+<p>       
+<h1 class="text-center mt-5">
+Мої послуги:
+</h1>
+</p> 
+<div class="container col">
+    <div class="row row-cols-1 row-cols-md-1 g-2">
+        <div class="card h-100 border-0 text-center m-2 p-2">
+            <div class="card-body task_list">
+                <p class="card-text">
+                <a href="{% url 'works' %}#consultation single" title="consultation single">
+                <h2>Особиста </br>консультація</h2></a> 
+                </p>
+            </div>
+        </div>
+
+        <div class="card h-100 border-0 text-center m-2 p-2">
+            <div class="card-body task_list">
+                <p class="card-text">
+                <a href="{% url 'works' %}#consultation group" title="consultation group">
+                    <h2>Консультація </br>пар</h2></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <p>
+    <h1 class="text-center">
+      З якими питаннями</br>до мене звертаються:
+    </h1>
+  </p>
+
+      <div class="row row-cols-1 row-cols-md-2 g-4 " >
+        <div class="col">
+          <div class="card h-100 border-0 text-center">
+            <div class="card-body task_list">
+              <p class="card-text"><h2>Самооцінка, невпевненість у собі</h2></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 text-center">
+            <div class="card-body task_list">
+              <p class="card-text"><h2>Сімейні кризи, зради</h2></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 text-center">
+            <div class="card-body task_list">
+              <p class="card-text"><h2>Особисті кризи, пошук смислів</h2></p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 text-center">
+            <div class="card-body task_list">
+              <p class="card-text"><h2>Відносини (сімейні, партнерські, дитячо-батьківські)</h2></p>
+            </div>
+          </div>
+        </div>
+      </div>    
 {% endblock %}

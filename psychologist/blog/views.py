@@ -1,11 +1,10 @@
 from django.urls import reverse
 from itertools import groupby
-from operator import itemgetter
+from operator import attrgetter
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseNotFound
-from .models import Like, Post, PostImage, Category, UserProfile
-# from .forms import PostForm
+from .models import Like, Post, PostImage, Category
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -19,26 +18,40 @@ from django.contrib import messages # для профілей
 
 logger = logging.getLogger(__name__)
 
-
-
 def article_list(request):
+    all_categories = Category.objects.all()
+    query = request.GET.get('q')  # Получение строки запроса из параметра 'q'
+
+    if query:
+        # Если есть строка запроса, искать по ключевым словам
+        all_posts = Post.objects.filter(title__icontains=query) | Post.objects.filter(content__icontains=query)
+    else:
+        # Если строки запроса нет, отобразить все статьи
+        all_posts = Post.objects.all()
+
     posts_by_category = {
         category: list(posts)
-        for category, posts in groupby(Post.objects.all(), key=lambda post: post.category)
+        for category, posts in groupby(all_posts, key=attrgetter('category'))
     }
 
-    context = {'posts_by_category': posts_by_category}
+    context = {'all_categories': all_categories, 'posts_by_category': posts_by_category, 'query': query}
     return render(request, 'blog/article_list copy 2.html', context)
 
-
-
-# def article_detail(request, article_id):
-#     post = get_object_or_404(Post, pk=article_id)
+# def article_list(request):
+#     # Получение всех категорий
 #     all_categories = Category.objects.all()
-#     current_category = post.category
 
-#     context = {'post': post, 'all_categories': all_categories, 'current_category': current_category}
-#     return render(request, 'blog/article_detail.html', context)
+#     # Получение всех постов без группировки
+#     all_posts = Post.objects.all()
+
+#     # Группировка по категориям
+#     posts_by_category = {
+#         category: list(posts)
+#         for category, posts in groupby(all_posts, key=attrgetter('category'))
+#     }
+
+#     context = {'all_categories': all_categories, 'posts_by_category': posts_by_category}
+#     return render(request, 'blog/article_list copy 2.html', context)
 
 
 @login_required(login_url='/authentication/auth/')
@@ -65,17 +78,14 @@ def article_detail(request, article_id):
 
 def category_posts(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    print(f"Category ID: {category_id}")
-    print(f"Selected Category: {category.name}")    
+    all_categories = Category.objects.all()  # Получить все категории
     posts = Post.objects.filter(category=category).order_by('-created_at')
-    print(f"Filtered Posts: {posts}")
-
     
     paginator = Paginator(posts, 9)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     
-    context = {'posts': posts, 'category': category}
+    context = {'posts': posts, 'category': category, 'all_categories': all_categories}
     return render(request, 'blog/category_posts.html', context)
 
 
@@ -117,10 +127,7 @@ def like_article(request, article_id):
     except Exception as e:
         # Логирование ошибки
         logger.error(f"Error in like_article: {e}", exc_info=True)
-        return JsonResponse({'error': 'Internal Server Error'}, status=500)
-
-
-    
+        return JsonResponse({'error': 'Internal Server Error'}, status=500)    
 
 @require_POST
 def add_comment(request, post_id):
@@ -163,29 +170,3 @@ def add_post(request):
     categories = Category.objects.all()
     context = {'categories': categories}
     return render(request, 'blog/add_post.html', context)
-
-def profiles(request):
-    if request.method == 'POST':
-        user = request.user
-        full_name = request.POST.get('full_name')
-        avatar = request.FILES.get('avatar')
-        date_of_birth = request.POST.get('date_of_birth')        
-
-        # чи вже є профіль для користувача:
-        try:
-            profile, created  = UserProfile.objects.get_or_create(user=user)
-            profile.date_of_birth = date_of_birth
-            profile.avatar = avatar
-            profile.full_name = full_name
-            profile.save()
-            messages.success(request, 'Профіль успішно оновлено.')
-            return redirect('profiles')
-        except Exception as e:
-            logger.error(f"Error in profiles view: {e}", exc_info=True)
-            messages.error(request, f'Помилка: {e}')
-
-        return redirect('profiles') 
-    else:
-    # Якщо метод запиту GET, просто відображати сторінку з профілями
-        profiles = UserProfile.objects.all()
-        return render(request, 'profiles.html', {'profiles': profiles})

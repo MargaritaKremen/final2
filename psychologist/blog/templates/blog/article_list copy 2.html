@@ -1,76 +1,66 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block title %}Blog{% endblock %}
 {% block extra_styles %}
-    {% load static %}
-   
-    <style>
-        .card-img-top {
-            max-width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-        }      
-        .card-title {
-            height: 2em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-        .card-text {
-            max-height: 70px; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-        }
-        .col-md-4 {
-            flex: 0 0 auto;
-            width: 33.3333%; 
-            margin-right: 10px; 
-        }
-        @media (max-width: 767px) {
-            .col-md-4 {
-                width: 100%; 
-                margin-right: 0; 
-            }
-            .carousel-container {
-                overflow-x: hidden; /* Скрываем горизонтальную прокрутку на мобильных экранах */
-            }
-            .col-md-4:not(:last-child) {
-                display: none; /* Скрываем все карточки, кроме последней */
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog_styles.css' %}">   
 {% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-dg0vq8U+Q3l/A49LKe3yD6+S6ZBLBnB++4p0XMR5IAPApG+4WFYIbBGoBIlNZpM9" crossorigin="anonymous"></script>
 
 {% block content %}
-
-<a href="{% url 'blog:add_post' %}" class="blog-title text-center mt-3">Створити пост</a>
-{% for category, posts in posts_by_category.items %}
-    <h2 class="text-center">{{ category.name }}</h2>
-    <div class="carousel-container">
-        {% for post in posts %}
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{% if post.image.all %}{{ post.image.first.image }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top" alt="Image">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">{{ post.title }}</h3>
-                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
-                        <p class="card-text">Author: {{ post.author.username }}</p>
-                        <p class="card-text">Created at: {{ post.created_at }}</p>
-                        <a href="{% url 'blog:article_detail' post.id %}" class="btn btn-primary">Read more</a>
+<div class="blog-page">
+    <div class="container-fluid mt-4 ms-0 ">    
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                <div class="side-bar">
+                    <a href="{% url 'blog:add_post' %}" class="blog-title text-center mt-3">Створити пост</a>
+                    <div class="search">
+                        <form method="get" action="{% url 'article_list' %}">
+                            <input type="text" name="q" placeholder="Пошук...">
+                            <button type="submit">Пошук</button>
+                        </form>                    
+                        {% if query %}
+                            <h4>Результати пошуку для '{{ query }}'</h4>
+                        {% endif %}
                     </div>
+                    <h3>Теми:</h3>
+                    <ul>
+                        {% for cat in all_categories %}
+                            <li class="list-of-categories {% if cat.id == category.id %}active{% endif %}">
+                                <a href="{% url 'blog:category_posts' category_id=cat.id %}"><h4>{{ cat.name }}</h4></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    <div class="text-center mt-3">
-        <a href="{% url 'blog:category_posts' category.id %}" class="btn btn-primary">Показать больше</a>
-    </div>
-{% endfor %}
+            <div class="col-md-9 col-sm-12">
+
+                
+                {% for category, posts in posts_by_category.items %}
+                    <h2 class="text-center">{{ category.name }}</h2>
+                    <div class="carousel-container ">
+                        {% for post in posts %}
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="{% if post.image.all %}{{ post.image.first.image }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top" alt="Image">
+                                    <div class="card-body text-center">
+                                        <h3 class="card-title">{{ post.title }}</h3>
+                                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                                        <p class="card-text">Автор: {{ post.author.username }}</p>
+                                        <p class="card-text">Створено: {{ post.created_at }}</p>
+                                        <a href="{% url 'blog:article_detail' post.id %}" class="btn btn-primary  btn-custom">Читати >></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3 mb-3">
+                        <a href="{% url 'blog:category_posts' category.id %}" class="btn btn-primary  btn-custom">Більше по темі "{{ category.name }}"</a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            
+        </div>   
+    </div> 
+</div> 
 {% endblock %}

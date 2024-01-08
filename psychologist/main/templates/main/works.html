@@ -1,8 +1,71 @@
 {% extends 'main/base.html' %}
-
-{% block title %}Psy - Консультації{% endblock %}
+{% load static %}
+{% block title %}Консультації{% endblock %}
 
 {% block content %}
-    <h3>Консультації</h3>
+<link rel="stylesheet" type="text/css" href="{% static 'main/style_about.css' %}">
+<div class="container-justify">
+    <div class="third_page text-center" id="consultation single">
+        <p>
+            <h1></br>Особиста </br>консультація</h1>
+            </br>
+            <h2>
+            Онлайн (Facetime/ Zoom/ Skype)
+            </br>
+            1000 грн / 55 хвилин
+            </h2>  
+                    
+            <div class=" d-grid gap-3 col-6 mx-auto pt-5 pb-5">
+                <a href="https://api.whatsapp.com/send?phone=380673853737" class="primary-link" 
+                target="_blank" title="WhatsApp">
+                    <div class="row"> <div class="col-2 text-start"> <i class="fa fa-whatsapp" aria-hidden="true"></i> </div>
+                    <span class="col-8 pt-2"><h3>Записатись</h3></span> </div>    
+                </a>  
+                <a href="https://t.me/@ksenija_savchenko"  class="primary-link" 
+                target="_blank" title="Telegram">  
+                <div class="row"> <div class="col-2 text-start"> <i class="fa fa-telegram" aria-hidden="true"></i> </div>
+                <span class="col-8 pt-2"><h3>Записатись</h3></span> </div>    
+                </a>              
+            </div> 
+            </br></br> </br></br>
+            </br></br> 
+        </p>
+    </div> 
+</div>
 
+
+<div class="container-justify">       
+    <div class="third_page text-center" id="consultation group">          
+        <p>
+        <h1>Консультація </br>пар</h1>
+        </br>
+        
+        </br>
+        <h2>
+        Онлайн (Facetime/ Zoom/ Skype)
+        </br>
+        1500 грн / 55 хвилин
+        </h2>             
+        <div class="d-grid gap-3 col-6 mx-auto pt-5 pb-5">
+            <a href="https://api.whatsapp.com/send?phone=380673853737" class="primary-link" 
+            target="_blank" title="WhatsApp">
+                <div class="row"> <div class="col-2 text-start"> <i class="fa fa-whatsapp" aria-hidden="true"></i> </div>
+                <span class="col-8 pt-2"><h3>Записатись</h3></span> </div>    
+            </a>  
+          
+            <a href="https://t.me/@ksenija_savchenko"  class="primary-link" 
+            target="_blank" title="Telegram">  
+            <div class="row"> <div class="col-2 text-start"> <i class="fa fa-telegram" aria-hidden="true"></i> </div>
+            <span class="col-8 pt-2"><h3>Записатись</h3></span> </div>    
+            </a>              
+        </div>               
+        </br> 
+        </p>
+        <div class="d-grid gap-3 mx-auto notate ">
+          <h2>Кожна зустріч присвячена окремій проблемі (наприклад, ревнощі у відносинах, стиснення власного тіла, 
+          відсутність сил і апатія, здобуття ресурсів тощо), які вишиковуються в загальний цикл.
+          </h2>
+        </div>
+  </div> 
+</div>
 {% endblock %}
