@@ -1,0 +1,120 @@
+:root {
+    --primary-color: #b8bcb753;
+    --button-color: #606a5c8f;
+    --hover-color: #c3c6c695;
+    --secondary-color: #fbfafc;
+    --box-shadow: 0 5px 10px rgba(53, 52, 52, 0.159);
+    --border-color: #1c073843;
+    --text-color: #6972a6;
+    --background-color: #fbfafc;
+    --form-background: #e9edf561;
+    --font-family: 'Cormorant Garamond', serif;
+    --article-background: #f7f6f361;
+    --article-text-color: #2d3135;
+    --navbar-color-base: #efe6d4;
+}
+/* Стили для контейнера */
+p{
+    font-family: var(--font-family);
+    font-size: 1.5rem;  
+    color: var(--article-text-color);  
+}
+.name{
+    font-size: 2.5rem; 
+}
+.container {
+    margin-top: 20px;
+    background-color: var(--background-color);
+    color: var(--article-text-color);  
+}
+
+/* Стили для заголовка профиля */
+.blog-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Стили для информации о профиле */
+.profile-info {
+    margin-top: 10px;
+}
+
+/* Стили для изображения профиля */
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+/* Стили для ссылки "Редактировать профиль" */
+
+.edit-profile-link  {
+    text-decoration: none; 
+    color: var(--article-text-color); 
+    font-size: 22px; 
+    background-color: var(--article-background);
+    box-shadow: var(--box-shadow);
+    border-color: var(--navbar-color-base);    
+    border-radius: 5px; /* скругляем углы */
+    display: inline-block;
+}
+.edit-profile-link:hover {
+    background-color: var(--hover-color);
+    box-shadow: var(--box-shadow);
+}
+
+/* Стили для сообщения, если профиль не найден */
+.profile-not-found {
+    color: #FF0000; /* Красный цвет */
+    margin-top: 10px;
+}
+
+/* Стили для ссылки "Создать профиль" */
+.create-profile-link {
+    display: block;
+    margin-top: 10px;
+    color: #007BFF; /* Синий цвет */
+}
+
+button {
+    padding: 8px 12px;
+    color: var(--article-text-color);
+    background-color: var(--hover-color);     
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: var(--article-text-color);
+    background-color: var(--secondary-color);
+    border-color: var(--hover-color);
+}
+/* Общие стили для мобильных устройств */
+@media only screen and (max-width: 767px) {
+    .container {
+        margin-top: 10px; 
+    }
+    .col-6 {
+        width: 100% !important; /* Заменить col-6 на ширину 100% на мобильных устройствах */
+    }
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+    }
+    .name {
+        font-size: 2rem;
+    }
+    .edit-profile-link {
+        font-size: 18px;
+    }
+}
+
+/* Дополнительные медиазапросы*/
+@media only screen and (max-width: 576px) {
+    /* Стили для экранов меньше 576px */
+}
+@media only screen and (max-width: 480px) {
+    /* Стили для экранов меньше 480px */
+}

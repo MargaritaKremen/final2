@@ -50,8 +50,8 @@
                                     <img src="{% if post.image.all %}{{ post.image.first.image }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top" alt="Image">
                                     <div class="card-body text-center">
                                         <h3 class="card-title">{{ post.title }}</h3>
-                                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
-                                        <p class="card-text">Автор: {{ post.author.username }}</p>
+                                        <p class="card-text text-h5">{{ post.content|truncatewords:25 }}</p>
+                                        <p class="card-text text-author">Автор: {{ post.author.username }}</p>
                                         <p class="card-text">Створено: {{ post.created_at }}</p>
                                         <a href="{% url 'blog:article_detail' post.id %}" class="btn btn-primary  btn-custom">Читати >></a>
                                     </div>

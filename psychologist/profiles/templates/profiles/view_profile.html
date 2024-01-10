@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'profiles/profiles_styles.css' %}"> 
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-6 align-items-center">
+      <div class="text-center rounded shadow p-4 mt-4">
+        {% if profile %}
+          <div>
+            <p>{{ profile.user.username }}:</p>            
+              <img src="{{ profile.avatar.url }}" alt="{{ profile.user.username }}'s Avatar" class="profile-avatar">            
+            <div class="profile-info">
+              <p><h4>Повне ім'я: </h4><span class="name">{{ profile.full_name }}</span></p>
+              {% load l10n %}
+              <p><h4>Дата народження: </h4><span class="name">{{ profile.date_of_birth|date:"d F Y"}}</span></p>
+              
+            </div>
+          </div>
+        {% else %}
+          <p class="profile-not-found">Профіль не знайдено.</p>
+          <a href="{% url 'edit_profile' %}" class="create-profile-link">Створити профіль</a>
+        {% endif %}
+        </div>
+        <div class="text-center mt-4">
+          <a href="{% url 'edit_profile' %}" class="edit-profile-link">Редагувати профіль</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
+from profiles.models import UserProfile
 
 def main(request):
     return render(request, 'main/index.html')
@@ -20,8 +20,8 @@ def works(request):
 def blog(request):
     return render(request, 'main/blog.html')
 
-def profiles(request):
-    return render(request, 'profiles/profiles.html')
+
+
 
 
 

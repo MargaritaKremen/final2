@@ -29,9 +29,16 @@
         -webkit-box-orient: vertical;
     }
     .card-text {
-        max-height: 7.2em; 
+        max-height: 6.2em; 
         overflow: hidden;
         text-overflow: ellipsis;
+        font-size: 16px;
+    }
+    .text-h5{
+        font-size: 20px;
+    }
+    .text-author{
+        font-size: 16px;
     }
     .carousel-container {
         display: flex;
@@ -45,9 +52,9 @@
     .col-md-4 {
         flex: 0 0 auto;
         width: 33.3333%; 
-        margin-right: 10px; 
-        
+        margin-right: 10px;         
     }
+
     @media (max-width: 767px) {
         .col-md-4 {
             width: 100%; 
@@ -61,22 +68,15 @@
         .col-md-4:not(:last-child) {
             display: none; /* Скрываем все карточки, кроме последней */
         }
-    }
-}
-@media (max-width: 767px) {
-    .col-8 {
-        margin-left: 0; /* Сброс отступа для устройств с шириной экрана менее 768px */
-        margin-top: 4em;
-    }
-    .side-bar {
-        display: none;
-      }    
-    .carousel-container {
-        margin-right: 5px; 
-        margin-left: 5px;
+        .text-h5{
+            font-size: 16px;
+        }
     }
 }
 
+p.card-text{
+    margin-top: 1em;
+}
 .side-bar {
     position: fixed;
     top: 5em;
@@ -88,12 +88,10 @@
     border-right: 1px solid #dee2e6;
     font-family: var(--font-family);
 }
-
 .col-8 {
     margin-left: 5em;
     margin-top: 4em;
 }
-
 .navbar {
     position: fixed;
     top: 0;
@@ -110,7 +108,6 @@
     border-color: var(--navbar-color-base);
     color: var(--text-color);
 }
-
 .btn-custom:hover {
     background-color: var(--text-color);
     border-color: var(--text-color);
@@ -124,7 +121,6 @@ h3.blog-title, .form-label, .form-control, input-group-text{
 }
 p.content{
     font-family: var(--font-family);
-    font-size: 1.5rem;    
 }
 .form-label{
     margin-bottom: .2rem;
@@ -140,7 +136,6 @@ p.content{
     background-color: var(--text-color); 
     border-color: var(--text-color); 
 }
-
 .btn-outline-primary:hover {
     color: var(--text-color);
     background-color: var(--secondary-color);
@@ -160,9 +155,7 @@ p.content{
     list-style-type: none; 
     padding: 0;
     font-family: var(--font-family);
-
 }
-
 .list-of-categories a {
     text-decoration: none; 
     color: var(--article-text-color); 
@@ -178,11 +171,9 @@ p.content{
     margin: 0 auto;
     max-width: 800px;
 }
-
 .far.fa-heart.text-black {
     color: var(--article-text-color); 
 }
-
 /* Стиль для сердечка с лайком */
 .far.fa-heart.text-pink {
     color: #e50ba0; 
@@ -193,57 +184,163 @@ p.content{
 .fa-regular fa-heart{
     color: #e50ba0; 
 }
-
 /*стиль для переліку статей в одній категорії category_posts.html: */
 .title-limit {
     max-height: 3.6em; 
     min-height: 3.6em; 
     overflow: hidden;
     }
-
-    .body-limit {
-    max-height: 7.2em; 
-    min-height: 7.2em; 
+.body-limit {
+    max-height: 6.2em; 
+    min-height: 6.2em;
     overflow: hidden;
-    }
-
-    .list-of-categories.active {
-        background-color: var(--article-background);
-        box-shadow: var(--box-shadow);
-    }
-    .list-of-categories:hover {
-        background-color: var(--article-background);
-        box-shadow: var(--box-shadow);
-    }
+    text-overflow: ellipsis;
+    font-size: 16px;
+}
+.text-h5{
+    font-size: 20px;
+}
+.text-author{
+    font-size: 16px;
+}
+.list-of-categories.active {
+    background-color: var(--article-background);
+    box-shadow: var(--box-shadow);
+}
+.list-of-categories:hover {
+    background-color: var(--article-background);
+    box-shadow: var(--box-shadow);
+}
 /* Стили для формы поиска */
 .search{
-form {
-    display: flex;
-    align-items: center;
+    form {
+        display: flex;
+        align-items: center;
+    }
+    input[type="text"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 8px 12px;
+        color: var(--article-text-color);
+        background-color: var(--hover-color);     
+        border-radius: 4px;
+        cursor: pointer;
+        border-color: var(--hover-color); 
+    }
+    button:hover {
+        color: var(--article-text-color);
+        background-color: var(--secondary-color);
+        border-color: var(--hover-color);
+    }
+    /* Стили для отображения результатов поиска */
+    h4 {
+        margin-top: 20px;    
+    }
 }
 
-input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
 
-button {
-    padding: 8px 12px;
-    color: var(--article-text-color);
-    background-color: var(--hover-color);     
-    border-radius: 4px;
-    cursor: pointer;
-}
+@media (max-width: 767px) {
+    .container-fluid {
+        padding-left: 5px; 
+        padding-right: 5px;
+      }      
+      .col-2 {
+        display: none; 
+      }      
+      .col-8 {
+        margin-left: 0; 
+        margin-top: 4em;
+      }      
+      .carousel-container {
+        margin-left: 5px;
+      }    
+      .article-body {
+        margin-left: 0; 
+        margin-top: 4em;
+        max-width: 100%; 
+        font-size: 14px;
+      }   
+      .text-h5{
+        font-size: 16px;
+    } 
+      p.content {
+        font-size: 0.5rem;  
+      }    
+      .col-md-4 {
+        width: 100%; 
+        margin-right: 0; 
+      } 
+      .side-bar {
+        display: none; 
+      }
+   
+    }
 
-button:hover {
-    color: var(--article-text-color);
-    background-color: var(--secondary-color);
-    border-color: var(--hover-color);
-}
 
-/* Стили для отображения результатов поиска */
-h4 {
-    margin-top: 20px;    
-}
-}
+  
+  /* Стили для средних экранов*/
+  @media (min-width: 577px) and (max-width: 991px) {
+    .container-fluid {
+        padding-left: 15px; 
+        padding-right: 15px;
+      }    
+      .col-2 {
+        display: none;
+      }    
+      .col-8 {
+        margin-left: 0; 
+        margin-top: 4em;
+      }    
+      .carousel-container {
+        margin-left: 5px;
+      }    
+      .article-body {
+        margin-left: 0; 
+        margin-top: 4em;
+      }
+      p.content {
+        font-size: 0.8rem;  
+      } 
+    }
+    @media (max-width: 576px) {
+        .container-fluid {
+          padding-left: 5px; 
+          padding-right: 5px;
+        }        
+        .col-2 {
+          display: none; 
+        }        
+        .col-8 {
+          margin-left: 0; 
+          margin-top: 4em;
+        }        
+        .carousel-container {
+          margin-left: 5px;
+        }      
+        .article-body {
+          margin-left: 0; 
+          margin-top: 4em;
+          max-width: 100%; 
+          font-size: 12px;
+        }    
+        .text-h5{
+            font-size: 14px;
+        }  
+        .text-author{
+            font-size: 12px;
+        }
+        p.content {
+          font-size: 0.5rem;  
+        }      
+        .col-md-4 {
+          width: 100%; 
+          margin-right: 0; 
+        }     
+        .side-bar {
+            display: none; 
+          } 
+      
+      }

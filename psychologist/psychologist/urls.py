@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('authentication/', include('authentication.urls')),
     path('blog/', include('blog.urls')),
-    path('profiles/', include('profiles.urls')),
+    path('view_profile/', include('profiles.urls')),
     ]
 
 if DEBUG:

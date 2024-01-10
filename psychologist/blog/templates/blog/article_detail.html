@@ -9,9 +9,8 @@
 
 <div class="container-fluid  mt-4 ms-0 ">
     <div class="row">
-        <div class="col-2 col-sm-12 ms-0">
+        <div class="col-md-2 col-sm-12">
             <div class="side-bar">
-                <a href="{% url 'blog:add_post' %}" class="blog-title text-center mt-3">Створити пост</a>
                 <div class="search">
                     <form method="get" action="{% url 'article_list' %}">
                         <input type="text" name="q" placeholder="Пошук...">
@@ -21,11 +20,18 @@
                         <h4>Результати пошуку для '{{ query }}'</h4>
                     {% endif %}
                 </div>
-                <h3>Теми:</h3>
+
+                <div class="list-of-categories mb-2 mt-2">
+                    <a href="{% url 'blog:add_post' %}"><h4>Створити пост</h4></a>
+                </div>
+                
+                <div class="list-of-categories">
+                    <a href="{% url 'article_list' %}"><h4>Всі теми:</h4></a>
+                </div>
                 <ul>
-                    {% for category in all_categories %}
-                        <li class="list-of-categories">
-                            <a href="{% url 'blog:category_posts' category_id=category.id %}"><h4>{{ category.name }}</h4></a>
+                    {% for cat in all_categories %}
+                        <li class="list-of-categories {% if cat.id == category.id %}active{% endif %}">
+                            <a href="{% url 'blog:category_posts' category_id=cat.id %}"><h4>{{ cat.name }}</h4></a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -35,7 +41,7 @@
             <div class="article-body ps-3 pe-3">      
                     <h1 class="mb-4 text-center">{{ post.title }}</h1>
                     <img src="{% if post.image.all %}{{ post.image.first.image }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-article mb-4 mx-auto d-block text-center" alt="Image">
-                    <p class="content">{{ post.content }}</p>
+                    <p class="content text-h5">{{ post.content }}</p>
                     
                     <p>Автор: {{ post.author.username }}</p>
                 

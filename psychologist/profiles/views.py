@@ -5,6 +5,35 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+def view_profile(request):
+    profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'profiles/view_profile.html', {'profile': profile})
+
+def edit_profile(request):
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        profile = None
+
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        avatar = request.FILES.get('avatar')
+        date_of_birth = request.POST.get('date_of_birth')
+
+        if profile:
+            profile.full_name = full_name
+            profile.avatar = avatar
+            profile.date_of_birth = date_of_birth
+            profile.save()
+            messages.success(request, 'Профіль успішно оновлено.')
+        else:
+            UserProfile.objects.create(user=request.user, full_name=full_name, avatar=avatar, date_of_birth=date_of_birth)
+            messages.success(request, 'Профіль успішно створено.')
+
+        return redirect('view_profile')
+
+    return render(request, 'profiles/edit_profile.html', {'profile': profile})
+
 def profiles(request):
     if request.method == 'POST':
         user = request.user

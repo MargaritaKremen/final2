@@ -5,26 +5,27 @@
     --secondary-color: #fbfafc;
     --box-shadow: 0 5px 10px rgba(53, 52, 52, 0.159);
     --border-color: #1c073843;
-    --text-color: #2e312d8f;
+    --text-color: #2e312da0;    
     --icon-color: #4d5891;
   } 
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
- }
- 
-  
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+ }  
 img {
   max-width: auto;
   height: 100vh;
   border-radius: 4px; 
-}   
-
-h1,h2{       
-    color:var(--text-color); 
+} 
+h1{       
+    color:#120524a7;
     font-family: 'Cormorant Garamond', serif;
+} 
+h2{       
+  color:var(--text-color); 
+  font-family: 'Cormorant Garamond', serif;
 } 
 .custom-h2{
   padding-left: 5rem;
@@ -77,39 +78,70 @@ h1,h2{
     color: var(--button-color);  
   }
 
-        @media(max-width:576px){
+  @media (min-width: 577px) and (max-width: 768px) {
+    .full-width-img {
+      width: 90%;
+      height: 100vh;
+      object-fit: cover;
+      margin-left: 0;
+    }
+  }
+
+        @media(max-width:576px){/* стили для мобильных устройств */
+          .full-width-img {
+            width: 90%;
+            height: 100vh;
+            object-fit: cover;
+            margin-left: 0;
+          }
+          .col-md-6 {
+            width: 100% !important; /* Заменить col-6 на ширину 100% на мобильных устройствах */
+          }
+          body {            
+            padding: 0; 
+          }        
+          img {
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 0; 
+          }        
+          h1, h2, h3, h4 {
+            text-align: center; 
+            padding-left: 0; 
+            padding-right: 0;
+          }
           h1 {
             text-align: center;
             margin: 0;
             color: var(--text-color);  
             font-size: 36px;
         }
-        h2{
-          text-align: center;
-          margin: 0;
-          color: var(--text-color);  
-          font-size: 24px;
-      }
-        h3 {
-          text-align: center;
-          margin: 0;
-          color: var(--text-color);  
-          font-size: 18px;
-      }
-      .primary-link {
-        font-size: 16px;
-      }
-      .box_change{
-        display: flex;
-        flex-direction: column;
+          h2{
+            text-align: center;
+            margin: 0;
+            color: var(--text-color);  
+            font-size: 24px;
         }
-      i{
-        font-size: 1.5rem; 
-        color: rgb(100, 237, 150);
-      }
-      .notate_about{
-        max-width: 50%;
-      }
+          h3 {
+            text-align: center;
+            margin: 0;
+            color: var(--text-color);  
+            font-size: 18px;
+        }
+          .primary-link {
+            font-size: 16px;
+          }
+          .box_change{
+            display: flex;
+            flex-direction: column;
+            }
+          i{
+            font-size: 1.5rem; 
+            color: rgb(100, 237, 150);
+          }
+          .notate_about{
+            max-width: 50%;
+          }
       }
   .task_list{
     background: var(--secondary-color);

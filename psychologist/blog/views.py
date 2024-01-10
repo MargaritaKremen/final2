@@ -37,22 +37,6 @@ def article_list(request):
     context = {'all_categories': all_categories, 'posts_by_category': posts_by_category, 'query': query}
     return render(request, 'blog/article_list copy 2.html', context)
 
-# def article_list(request):
-#     # Получение всех категорий
-#     all_categories = Category.objects.all()
-
-#     # Получение всех постов без группировки
-#     all_posts = Post.objects.all()
-
-#     # Группировка по категориям
-#     posts_by_category = {
-#         category: list(posts)
-#         for category, posts in groupby(all_posts, key=attrgetter('category'))
-#     }
-
-#     context = {'all_categories': all_categories, 'posts_by_category': posts_by_category}
-#     return render(request, 'blog/article_list copy 2.html', context)
-
 
 @login_required(login_url='/authentication/auth/')
 def article_detail(request, article_id):
