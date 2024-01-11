@@ -11,7 +11,7 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('works/', works, name='works'),
     path('blog/', blog, name='blog'),
-    path('profiles/', view_profile, name='view_profile'),
+    path('profile/', view_profile, name='view_profile'),
     path('authentication/auth/', auth, name='auth'),
     path('blog/articles/', article_list, name='article_list'),
 ]
