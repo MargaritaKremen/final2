@@ -37,19 +37,26 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=255, blank=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Користувач')
+    full_name = models.CharField(max_length=255, blank=True, verbose_name='Повне ім\'я')
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='Аватар')
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата народження')    
+
+
+    class Meta:
+        verbose_name = 'Профіль користувача'
+        verbose_name_plural = 'Профілі користувачів'
+
 
     def __str__(self):
         return f'Profile for {self.user.username}'
+    
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+        
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

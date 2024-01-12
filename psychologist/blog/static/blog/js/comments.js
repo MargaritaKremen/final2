@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const newComment = document.createElement('p');
                         newComment.textContent = `${data.comment.author}: ${data.comment.content}`;
                         commentsContainer.appendChild(newComment);
+                        document.location.reload();
                     }
                     commentContent.value = '';
                 } else {
