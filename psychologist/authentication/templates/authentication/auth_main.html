@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,6 @@
 </head>
 <body>
     <h1>Hello {{user.username}}</h1>
-    <a href="/logout">Вихід</a>
+    <a href="{% url 'logout' %}">Вихід</a>
 </body>
 </html>

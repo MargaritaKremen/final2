@@ -46,13 +46,23 @@
                         <a class="nav-link" href="{% url 'article_list' %}" title="blog">Блог</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_profile' %}" title="profiles">Профіль</a>
+                        <a class="nav-link" href="{% url 'view_profile' %}" title="profiles">Профіль</a>                        
                     </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="{% url 'auth' %}" title="Вхід">
-                            <i class="fa-solid fa-circle-user fa-lg fa-color"></i>
-                        </a>
-                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="{% url 'logout' %}" title="Вихід">
+                                <i class="fa-solid fa-circle-user fa-lg fa-color"></i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="{% url 'auth' %}" title="Вхід">
+                                <i class="fa-solid fa-circle-user fa-lg fa-color-not"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
                     </ul>
             </div>
         </nav>

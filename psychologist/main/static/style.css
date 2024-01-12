@@ -38,6 +38,9 @@ h1, h2, h3{
 .fa-color{
     color: #546e9c;
 }
+.fa-color-not{
+    color: #db2505;
+}
 
 .nav-link:hover,
 .navbar-brand .fa-color:hover,
