@@ -45,10 +45,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'article_list' %}" title="blog">Блог</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_profile' %}" title="profiles">Профіль</a>                        
                     </li>
-
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="navbar-brand" href="{% url 'logout' %}" title="Вихід">
