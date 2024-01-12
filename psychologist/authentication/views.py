@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from urllib.parse import urlparse, urlunparse
+# from urllib.parse import urlparse, urlunparse
 
 
 def register(request):
@@ -65,7 +65,7 @@ def auth(request):
                     # Получаем 'next' параметр из GET-параметров
                     next_url = request.GET.get('next', None)
 
-                    # Проверяем, что 'next' URL находится в пределах вашего приложения
+                    # Проверяем, что 'next' URL находится в пределах приложения
                     if next_url and next_url.startswith('/') and '//' not in next_url:
                         return redirect(next_url)
 

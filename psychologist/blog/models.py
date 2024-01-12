@@ -24,7 +24,8 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     favorites = models.ManyToManyField(User, related_name='user_favorited_articles', blank=True)
     image = models.ManyToManyField(PostImage, related_name='post_images', blank=True)
-    liked_users = models.ManyToManyField(User, through='Like', related_name='user_likes', blank=True)    
+    liked_users = models.ManyToManyField(User, through='Like', related_name='user_likes', blank=True)  
+      
     # profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
