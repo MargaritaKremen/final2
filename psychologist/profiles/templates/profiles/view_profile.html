@@ -11,16 +11,22 @@
             <p>{{ profile.user.username }}:</p>  
             {% if profile.avatar %}  
 
-              <img src="{{ profile.avatar.url }}" alt="{{ profile.user.username }}'s Avatar" class="profile-avatar">    
+              <img src="{{ profile.avatar.url }}" alt="{{ profile.user.username }}'s Avatar" class="profile-avatar">   
+              <div class="profile-info">
+                <p><h4>Повне ім'я: </h4><span class="name">{{ profile.full_name }}</span></p>
+                {% load l10n %}
+                <p><h4>Дата народження: </h4><span class="name">{{ profile.date_of_birth|date:"d F Y"}}</span></p>              
+              </div>
               {% else %}
+
               <img src="{% static 'profiles/noname.png' %}">
+              <div class="profile-info">
+                <p><h4>Повне ім'я: </h4><span class="name">Повне ім'я</span></p>
+                {% load l10n %}
+                <p><h4>Дата народження: </h4><span class="name">00.00.0000</span></p>              
+              </div>
               {% endif %}       
-            <div class="profile-info">
-              <p><h4>Повне ім'я: </h4><span class="name">{{ profile.full_name }}</span></p>
-              {% load l10n %}
-              <p><h4>Дата народження: </h4><span class="name">{{ profile.date_of_birth|date:"d F Y"}}</span></p>
-              
-            </div>
+           
           </div>
         {% else %}
           <p class="profile-not-found">Профіль не знайдено.</p>
